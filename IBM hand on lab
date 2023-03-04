@@ -1,0 +1,41 @@
+#1. Task A; Create a database
+wget https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-DB0110EN-SkillsNetwork/datasets/sakila/sakila_mysql_dump.sql
+
+#Start the MySQL service session in the Cloud IDE using the command below in the terminal:
+start_mysql
+
+#Initiate the mysql command prompt session within MySQL service session using the command below in the terminal:
+mysql --host=127.0.0.1 --port=3306 --user=root --password
+
+#Create a new database sakila using the command below in the terminal and proceed to Task B:
+create database sakila;
+
+
+
+#2.Task B: Restore the structure and data of a table
+
+#To use the newly created empty sakila database, use the command below in the terminal:
+use sakila;
+
+#To restore the sakila mysql dump file 
+source sakila_mysql_dump.sql;
+
+
+#3. Task C: Explore and query tables
+#to list all the tables
+SHOW FULL TABLES WHERE table_type = 'BASE TABLE';
+
+#Explore the structure of the staff table
+DESCRIBE staff;
+
+#retrieve all the records
+SELECT * FROM staff;
+
+#quit the MYSQL command prompt sesison
+\q
+
+#4. task D: Dump/backup tables from a database
+mysqldump --host=127.0.0.1 --port=3306 --user=root --password sakila staff > sakila_staff_mysql_dump.sql
+
+#view the contents of the dump file
+cat sakila_staff_mysql_dump.sql
